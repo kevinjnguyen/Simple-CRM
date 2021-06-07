@@ -3,5 +3,5 @@ An open source free customer relationship management system using Firebase and A
 
 ## Requirements
 * Firebase CLI (>= 9.10.2)
-* Angular (>= 11.2.5)
+* Angular (>= 12.0.3)
 * Node (>= 16.1.0)
