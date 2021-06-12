@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Visit } from '../customer/customer.component';
 import firebase from 'firebase/app';
 import { Location } from '@angular/common';
-import { environment } from 'src/environments/environment';
+import { Constants } from 'src/constants';
 @Component({
   selector: 'app-edit-invoice',
   templateUrl: './edit-invoice.component.html',
@@ -15,8 +15,8 @@ export class EditInvoiceComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private firestore: AngularFirestore, private router: Router, private location: Location) { }
 
-  visitTypes = environment.services;
-  employeeTypes = environment.employees;
+  visitTypes = Constants.services;
+  employeeTypes = Constants.employees;
 
   editInvoiceForm = this.fb.group({
     date: [new Date(), Validators.required],

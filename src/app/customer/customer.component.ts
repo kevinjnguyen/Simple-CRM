@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { fromEvent, Observable, Subscription} from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Constants } from 'src/constants';
 import { MyTel } from '../tel-input/tel-input.component';
 import { VisitsDataSource } from './visits-datasource';
 @Component({
@@ -22,8 +22,8 @@ export class CustomerComponent implements OnInit {
     notes: [null],
   });
 
-  visitTypes = environment.services;
-  employeeTypes = environment.employees;
+  visitTypes = Constants.services;
+  employeeTypes = Constants.employees;
 
   newInvoiceForm = this.fb.group({
     date: [new Date(), Validators.required],

@@ -1,8 +1,5 @@
 export const environment = {
   production: true,
-  companyName: 'Simple CRM',
-  services: ['Color', 'Curly Perm', 'Digital Perm', 'Haircut', 'Highlights', 'Straight Perm'],
-  employees: ['Employee A', 'Employee B'],
   firebase: {
     apiKey: "AIzaSyBG8Pb0LGARSNgDTqV3NFhtRMRZzgfdKA0",
     authDomain: "simple-crm-ad7ce.firebaseapp.com",
