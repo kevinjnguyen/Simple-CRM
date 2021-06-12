@@ -1,0 +1,78 @@
+<div class="container">
+  <h1>Customers</h1>
+  <button mat-raised-button color="primary" class="button right-spacer" routerLink="/create-customer">Add
+    Customer</button>
+    <div class="mat-elevation-z1">
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title class="title">Search for Customer</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row wrap">
+              <div fxFlex.lt-md="100" fxFlex="33">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input matInput placeholder="First name" formControlName="firstName">
+                </mat-form-field>
+              </div>
+              <div fxFlex.lt-md="100" fxFlex="33" >
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput placeholder="Last name" formControlName="lastName">
+                </mat-form-field>
+              </div>
+              <div fxFlex.lt-md="100" fxFlex="33">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Phone Number</mat-label>
+                  <example-tel-input formControlName="phoneNumber" class="phone-number"></example-tel-input>
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-raised-button color="basic" type="button" (click)="clear()" class="cancel">Clear</button>
+            <button mat-raised-button color="primary" type="submit"
+              [disabled]="customerForm.invalid || customerForm.disabled">Search</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="mat-elevation-z1">
+      <table mat-table #larger class="full-width-table" aria-label="Elements">
+        <!-- First Name Column -->
+        <ng-container matColumnDef="firstName" width="25%">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+        </ng-container>
+    
+        <!-- Last Name Column -->
+        <ng-container matColumnDef="lastName" width="25%">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+        </ng-container>
+    
+        <!-- Phone Number 1 Column -->
+        <ng-container matColumnDef="phoneNumber1" width="10%">
+          <th mat-header-cell *matHeaderCellDef>Phone 1</th>
+          <td mat-cell *matCellDef="let row"><a href="tel:{{row.phoneNumber1}}">{{row.phoneNumber1}}</a></td>
+        </ng-container>
+    
+        <!-- Phone Number 2 Column -->
+        <ng-container matColumnDef="phoneNumber2" width="10%">
+          <th mat-header-cell *matHeaderCellDef>Phone 2</th>
+          <td mat-cell *matCellDef="let row"><a href="tel:{{row.phoneNumber2}}">{{row.phoneNumber2}}</a></td>
+        </ng-container>
+    
+        <ng-container matColumnDef="notes">
+          <th mat-header-cell *matHeaderCellDef width="30%">Notes</th>
+          <td mat-cell *matCellDef="let row">{{row.notes}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></tr>
+      </table>
+    
+      <mat-paginator #paginator [length]="numItems" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
+        (page)="onPageUpdate($event)" [disabled]="isPaginationDisabled">
+      </mat-paginator>
+    </div>
+</div>
