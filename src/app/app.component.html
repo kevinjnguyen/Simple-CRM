@@ -1,7 +1,10 @@
 <router-outlet></router-outlet>
 
+<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+
 <ul>
   <li class="text" *ngFor="let item of items | async">
     {{item.name}}
   </li>
 </ul>
+
