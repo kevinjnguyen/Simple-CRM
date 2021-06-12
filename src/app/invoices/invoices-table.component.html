@@ -1,0 +1,79 @@
+<div class="container">
+  <h1>Visits</h1>
+  <br>
+    <div class="mat-elevation-z1">
+      <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title class="title">Search for Visits</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row wrap">
+              <div fxFlex.lt-md="100" fxFlex="33">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #startPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div fxFlex.lt-md="100" fxFlex="33">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #endPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-raised-button color="basic" type="button" (click)="clear()" class="cancel">Clear</button>
+            <button mat-raised-button color="primary" type="submit"
+              [disabled]="invoiceForm.invalid || invoiceForm.disabled">Search</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="mat-elevation-z1">
+      <table mat-table #larger class="full-width-table" aria-label="Elements">
+        <!-- Date Column -->
+        <ng-container matColumnDef="date" width="25%">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let row">{{row.date | date: 'mediumDate'}}</td>
+        </ng-container>
+    
+        <!-- Cost Column -->
+        <ng-container matColumnDef="cost" width="25%">
+          <th mat-header-cell *matHeaderCellDef>Cost</th>
+          <td mat-cell *matCellDef="let row">{{row.cost | currency}}</td>
+        </ng-container>
+    
+        <!-- Tip Column -->
+        <ng-container matColumnDef="tip" width="10%">
+          <th mat-header-cell *matHeaderCellDef>Tip</th>
+          <td mat-cell *matCellDef="let row">{{row.tip | currency}}</td>
+        </ng-container>
+    
+        <!-- Employee Type Column -->
+        <ng-container matColumnDef="employeeType" width="10%">
+          <th mat-header-cell *matHeaderCellDef>Employee</th>
+          <td mat-cell *matCellDef="let row">{{row.employeeType}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="notes">
+          <th mat-header-cell *matHeaderCellDef width="20%">Notes</th>
+          <td mat-cell *matCellDef="let row">{{row.notes}}</td>
+        </ng-container>
+        <ng-container matColumnDef="visitType">
+          <th mat-header-cell *matHeaderCellDef width="10%">Visit Type</th>
+          <td mat-cell *matCellDef="let row">{{row.visitType}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></tr>
+      </table>
+    
+      <mat-paginator #paginator [length]="numItems" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
+        (page)="onPageUpdate($event)" [disabled]="isPaginationDisabled">
+      </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+  <form [formGroup]="editInvoiceForm" (ngSubmit)="onNewInvoiceSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="title">Edit Visit</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="customer-button">
+          <button mat-stroked-button color="primary" type="button" (click)="toCustomerDetails()">Customer Details</button>
+        </div>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Date of Visit</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Type of Visit</mat-label>
+          <mat-select formControlName="visitType">
+            <mat-option *ngFor="let visit of visitTypes" [value]="visit">
+              {{visit}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput placeholder="Price" formControlName="cost" type="number" min="1" step="any">
+          <mat-error *ngIf="editInvoiceForm.controls['cost'].hasError('required')">
+            Price is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Tip</mat-label>
+          <input matInput placeholder="Tip" formControlName="tip" type="number" min="0" step="any">
+          <mat-error *ngIf="editInvoiceForm.controls['tip'].hasError('required')">
+            Tip is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Employee</mat-label>
+          <mat-select formControlName="employeeType">
+            <mat-option *ngFor="let type of employeeTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <textarea matInput placeholder="Notes" formControlName="notes" type="text"></textarea>
+        </mat-form-field>
+        <button mat-stroked-button color="basic" type="button" (click)="cancel()" class="cancel">Cancel</button>
+        <button mat-flat-button color="primary" type="submit"
+          [disabled]="editInvoiceForm.invalid || editInvoiceForm.disabled || id.length === 0">Save</button>
+        <button mat-raised-button color="warn" type="button" (click)="delete()" class="delete">Delete</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

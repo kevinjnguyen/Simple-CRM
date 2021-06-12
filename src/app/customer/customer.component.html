@@ -1,0 +1,148 @@
+<div class="container" fxLayout.xs="column" fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex.lt-sm="100" fxFlex="50" class="form-container">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="title">Customer Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First name" formControlName="firstName">
+            <mat-error *ngIf="customerForm.controls['firstName'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-error *ngIf="customerForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Phone Number 1</mat-label>
+            <example-tel-input formControlName="phoneNumber1"></example-tel-input>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Phone Number 2</mat-label>
+            <example-tel-input formControlName="phoneNumber2"></example-tel-input>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <textarea matInput placeholder="Notes" formControlName="notes" type="text"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="customerForm.invalid || customerForm.disabled || id.length === 0">Update</button>
+          <button mat-stroked-button color="basic" type="button" (click)="downloadContact()" style="float: right;">Download Contact</button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div fxFlex.lt-sm="100" fxFlex="50">
+    <form [formGroup]="newInvoiceForm" (ngSubmit)="onNewInvoiceSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="title">Add Visit</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field  class="form-field" appearance="outline">
+                <mat-label>Date of Visit</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field  class="form-field" appearance="outline">
+                <mat-label>Type of Visit</mat-label>
+                <mat-select formControlName="visitType">
+                  <mat-option *ngFor="let visit of visitTypes" [value]="visit">
+                    {{visit}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field  class="form-field" appearance="outline">
+                <input matInput placeholder="Price" formControlName="cost" type="number" min="1" step="any">
+                <mat-error *ngIf="newInvoiceForm.controls['cost'].hasError('required')">
+                  Price is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field  class="form-field" appearance="outline">
+                <input matInput placeholder="Tip" formControlName="tip" type="number" min="0" step="any">
+                <mat-error *ngIf="newInvoiceForm.controls['tip'].hasError('required')">
+                  Tip is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field  class="form-field" appearance="outline">
+                <mat-label>Employee</mat-label>
+                <mat-select formControlName="employeeType">
+                  <mat-option *ngFor="let type of employeeTypes" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <button mat-raised-button color="primary" type="submit" [disabled]="newInvoiceForm.invalid || newInvoiceForm.disabled || id.length === 0">Add Visit</button>
+      </mat-card>
+    </form>
+  </div>
+</div>
+<div class="container previousVisits" fxLayout.xs="column" fxLayout="row">
+  <div class="cardWrap" fxFlex="100">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="title">Previous Visits</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table #larger class="full-width-table" aria-label="Elements" multiTemplateDataRows>
+          <!-- Price Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let row">{{row.date | date: 'mediumDate' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="visitType">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let row">{{row.visitType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let row">{{row.cost | currency}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tip">
+            <th mat-header-cell *matHeaderCellDef>Tip</th>
+            <td mat-cell *matCellDef="let row">{{row.tip | currency}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="employee">
+            <th mat-header-cell *matHeaderCellDef>Employee</th>
+            <td mat-cell *matCellDef="let row">{{row.employeeType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="notes">
+            <th mat-header-cell *matHeaderCellDef>Notes</th>
+            <td mat-cell *matCellDef="let row">{{row.notes}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editVisit(row)"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

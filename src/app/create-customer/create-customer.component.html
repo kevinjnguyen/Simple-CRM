@@ -1,0 +1,33 @@
+<form [formGroup]="customerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="title">Create Customer</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput placeholder="First name" formControlName="firstName">
+        <mat-error *ngIf="customerForm.controls['firstName'].hasError('required')">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput placeholder="Last name" required formControlName="lastName">
+        <mat-error *ngIf="customerForm.controls['lastName'].hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <example-tel-input formControlName="phoneNumber1" required></example-tel-input>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <textarea matInput placeholder="Notes" formControlName="notes" type="text"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="basic" type="button" (click)="cancel()" class="cancel">Cancel</button>
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="customerForm.invalid || customerForm.disabled">Create</button>
+    </mat-card-content>
+  </mat-card>
+</form>
