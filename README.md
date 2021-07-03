@@ -1,27 +1,25 @@
-# SimpleCrm
+# Simple CRM
+The goal of this project is to develop an open-source customer relationship management system fueled entirely by free technologies. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+Demo: https://simple-crm-ad7ce.web.app
 
-## Development server
+## Features
+### Google OAuth
+![Google OAuth](screenshots/login.png)
+Integrated authentication using Google Auth.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Customer Search
+![Customer Search](screenshots/customer_search.png)
+Search for customers through first name, last name, and phone number. 
 
-## Code scaffolding
+### Customer Edit
+![Customer Edit](screenshots/customer_edit.png)
+Edit a customer details such as first name, last name, etc with custom notes.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Invoice/Visit Search
+![Invoice Search](screenshots/visit_search.png)
+Search through invoices based on date filtering.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Invoice/Visit Edit
+![Invoice Edit](screenshots/invoice_edit.png)
+Edit the invoice such as date, service, employee, price, etc.
