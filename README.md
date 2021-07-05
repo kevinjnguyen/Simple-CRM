@@ -90,3 +90,9 @@ service cloud.firestore {
 ```
 
 **This would allow any requests coming from user ID `awkward_tacos` read and write access across the application.** For more information on firestore rules: https://firebase.google.com/docs/firestore/security/get-started
+
+## Future Improvements
+* Add unit tests and e2e tests
+* Add more advanced searching and filtering
+* Add predictive suggestions for customer outreach
+* Add monthly reporting for invoices
