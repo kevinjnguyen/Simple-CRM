@@ -3,7 +3,8 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item *ngIf="auth.user | async" routerLink="/customers" routerLinkActive="active" (click)="drawer.toggle()">Customers</a>
-      <a mat-list-item *ngIf="auth.user | async" routerLink="/invoices"  (click)="drawer.toggle()">Visits</a>
+      <a mat-list-item *ngIf="auth.user | async" routerLink="/invoices"  (click)="drawer.toggle()">Invoices</a>
+      <a mat-list-item *ngIf="auth.user | async" routerLink="/reports"  (click)="drawer.toggle()">Reports</a>
       <a mat-list-item *ngIf="auth.user | async" (click)="logout();drawer.toggle()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

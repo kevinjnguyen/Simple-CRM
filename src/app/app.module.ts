@@ -31,6 +31,7 @@ import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MyTelInput } from './tel-input/tel-input.component';
 import { InvoicesComponent } from './invoices/invoices-table.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 const redirectDidLogin = () => redirectLoggedInTo(['customers']);
@@ -48,6 +49,15 @@ const routes: Routes = [
   {
     path: 'customer/:id',
     component: CustomerComponent,
+    canActivate: [AngularFireAuthGuard],
+    data:
+    {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    },
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
     canActivate: [AngularFireAuthGuard],
     data:
     {
@@ -109,6 +119,7 @@ const routes: Routes = [
     EditInvoiceComponent,
     MyTelInput,
     InvoicesComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
