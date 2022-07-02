@@ -7,7 +7,6 @@ import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
-import { MyTel } from '../tel-input/tel-input.component';
 import { InvoiceTableDataSource } from './invoices-table-datasource';
 import { CustomersSearchTableDataSource } from './search-invoices-table-datasource';
 import { flatten } from '@angular/compiler';
@@ -77,8 +76,6 @@ export class InvoicesComponent implements AfterViewInit {
   onSubmit() {
     const startDate = this.invoiceForm.controls.startDate.value as Date;
     const endDate = this.invoiceForm.controls.endDate.value as Date;
-    console.log(startDate.getTime());
-    console.log(endDate.getTime());
     if (endDate.getTime() < startDate.getTime()) {
       window.alert('Invalid selection. End date is before start date.');
     } else {
@@ -118,6 +115,11 @@ export class InvoicesComponent implements AfterViewInit {
       this.largeTable.dataSource = new CustomersSearchTableDataSource(filtered);
       this.invoiceForm.enable();
     }
+  }
+
+  download() {
+    console.log("downloading...");
+
   }
 
   clear() {
