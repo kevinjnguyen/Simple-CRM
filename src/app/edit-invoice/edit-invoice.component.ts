@@ -43,7 +43,9 @@ export class EditInvoiceComponent implements OnInit {
           this.editInvoiceForm.controls.date.setValue(new Date(visit.date));
           this.editInvoiceForm.controls.tip.setValue(visit.tip);
           this.editInvoiceForm.controls.employeeType.setValue(visit.employeeType);
-          this.editInvoiceForm.controls.notes.setValue(visit.notes);
+          if (visit.notes) {
+            this.editInvoiceForm.controls.notes.setValue(visit.notes);
+          }
           this.editInvoiceForm.enable();
         });
       } else {

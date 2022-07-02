@@ -1,1 +1,53 @@
-<p>reports works!</p>
+<div class="container">
+  <h1>Reports</h1>
+  <br>
+  <div class="mat-elevation-z1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="title">Annual</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row wrap">
+          <mat-form-field appearance="fill">
+            <mat-label>Report Year</mat-label>
+            <mat-select  [(value)]="selectedYear">
+              <mat-option *ngFor="let year of years" [value]="year.value">
+                {{year.displayValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">View Annual</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mat-elevation-z1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="title">Monthly</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row wrap">
+          <mat-form-field appearance="fill">
+            <mat-label>Report Year</mat-label>
+            <mat-select  [(value)]="selectedYear">
+              <mat-option *ngFor="let year of years" [value]="year.value">
+                {{year.displayValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Report Month</mat-label>
+            <mat-select  [(value)]="selectedMonth">
+              <mat-option *ngFor="let month of months" [value]="month.value">
+                {{month.displayValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">View Monthly</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>  
+</div>
